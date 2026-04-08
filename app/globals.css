@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "KhandBold";
+  src: url("/Khand-Bold_3.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-khand: "KhandBold", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}

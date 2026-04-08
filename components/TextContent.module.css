@@ -1,0 +1,32 @@
+.section {
+  width: min(96%, 1050px);
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 16px;
+  background: #0b2d63;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f3f7ff;
+  text-align: center;
+  font-family: var(--font-khand), "Segoe UI", sans-serif;
+}
+
+.heroSubtitulo {
+  margin: 0.1rem 0 1rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.heroSecaoTitulo {
+  margin: 1.2rem 0 0.2rem;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.heroTexto {
+  margin: 0.3rem auto;
+  max-width: 900px;
+  line-height: 1.7;
+  font-size: clamp(0.92rem, 1.1vw, 1rem);
+}

@@ -1,0 +1,109 @@
+.page {
+  position: relative;
+  width: 100%;
+  background: #071a3a;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+}
+
+.navbarInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  color: #fff;
+  min-height: 72px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.logoBox {
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: transparent;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-khand), "Segoe UI", sans-serif;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  backdrop-filter: blur(4px);
+}
+
+.btnPrimary {
+  background: rgba(145, 32, 32, 0.88);
+  border-color: rgba(145, 32, 32, 0.88);
+}
+
+.content {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 90px;
+  overflow: hidden;
+}
+
+.contentVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: none; /* impede interação com o vídeo de fundo */
+}
+
+.contentOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.contentInner {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100vh - 90px);
+}
+
+.sectionWrap {
+  padding: 0 1rem 1rem;
+}
