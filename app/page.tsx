@@ -24,15 +24,16 @@ export default function Home() {
 
         {/* Conteúdo principal: lista + carrossel */}
         <div className={styles.content} id="main-container">
-          <iframe
+          <video
             className={styles.contentVideo}
-            src="https://www.youtube.com/embed/v3EQK2XwQUQ?autoplay=1&mute=1&loop=1&playlist=v3EQK2XwQUQ&controls=0&modestbranding=1&rel=0&disablekb=1&fs=0&iv_load_policy=3&start=0"
-            title="Background video"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen={true}
+            autoPlay
+            loop
+            muted
+            playsInline
             aria-hidden="true"
-          ></iframe>
+          >
+            <source src="/car-video/rally_highlights_30s_no_text (1).mp4" type="video/mp4" />
+          </video>
           <div className={styles.contentOverlay} />
           <div className={styles.contentInner}>
             <Carrossel />
