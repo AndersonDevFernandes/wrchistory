@@ -1,32 +1,186 @@
+/* TextContent.module.css — WRC Heritage · Scroll Reveal Edition */
+
+/* ─── Custom props ─── */
 .section {
-  width: min(96%, 1050px);
+  --red: #c0392b;
+  --red-dim: rgba(192, 57, 43, 0.45);
+  --text-body: rgba(210, 220, 235, 0.82);
+  --reveal-duration: 0.85s;
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  padding: 110px clamp(1.5rem, 6vw, 5rem) 140px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 2rem;
-  border-radius: 16px;
-  background: #0b2d63;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #f3f7ff;
-  text-align: center;
-  font-family: var(--font-khand), "Segoe UI", sans-serif;
+  overflow: hidden;
 }
 
+/* Vertical accent line */
+.section::before {
+  content: "";
+  position: absolute;
+  left: clamp(1.5rem, 6vw, 5rem);
+  top: 80px;
+  bottom: 80px;
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--red) 12%,
+    var(--red) 88%,
+    transparent 100%
+  );
+  opacity: 0.55;
+}
+
+/* ─── KICKER / subtítulo ─── */
 .heroSubtitulo {
-  margin: 0.1rem 0 1rem;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-family: "Barlow Condensed", "Oswald", "Impact", sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.65rem, 1.2vw, 0.72rem);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--red);
+  margin: 0 0 2.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+
+  /* scroll-reveal state */
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s var(--reveal-ease), transform 0.6s var(--reveal-ease);
 }
 
-.heroSecaoTitulo {
-  margin: 1.2rem 0 0.2rem;
-  font-size: clamp(1rem, 1.7vw, 1.2rem);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.heroSubtitulo::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--red-dim), transparent);
+  max-width: 110px;
 }
 
+/* ─── HERO PARAGRAPHS ─── */
 .heroTexto {
-  margin: 0.3rem auto;
-  max-width: 900px;
-  line-height: 1.7;
-  font-size: clamp(0.92rem, 1.1vw, 1rem);
+  font-family: "IBM Plex Sans", "Source Sans 3", Georgia, serif;
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  line-height: 1.85;
+  color: var(--text-body);
+  margin: 0 0 1.5rem 0;
+  font-weight: 300;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--reveal-ease), transform 0.7s var(--reveal-ease);
+}
+
+/* ─── SECTION HEADINGS — letras grandes com text-reveal ─── */
+.heroSecaoTitulo {
+  font-family: "Barlow Condensed", "Oswald", "Impact", sans-serif;
+  font-weight: 900;
+  /* ↓ tamanho grande para highlight visual */
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: #ffffff;
+  margin: 3.6rem 0 1.2rem 0;
+  position: relative;
+  padding-left: 1.2rem;
+
+  /* clip-based text reveal */
+  overflow: hidden;
+  /* container não anima; o span interno anima (ver JS ou classe .visible) */
+}
+
+/* Red notch left */
+.heroSecaoTitulo::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: var(--red);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.3s;
+}
+
+/* ─── Shimmer overlay nos títulos grandes ─── */
+.heroSecaoTitulo .shimmer {
+  display: block;
+  background: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    #ffffff 35%,
+    rgba(192, 57, 43, 0.8) 50%,
+    #ffffff 65%,
+    #ffffff 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* shimmer só ativa após reveal (ver .visible) */
+  background-position: 200% center;
+  transition: background-position 0s;
+}
+
+/* ─── Scroll-reveal: classe .visible aplicada via IntersectionObserver ─── */
+
+/* kicker */
+.section.visible .heroSubtitulo {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+/* parágrafos — stagger via nth-of-type */
+.section.visible .heroTexto {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section.visible .heroTexto:nth-of-type(1) { transition-delay: 0.12s; }
+.section.visible .heroTexto:nth-of-type(2) { transition-delay: 0.22s; }
+.section.visible .heroTexto:nth-of-type(3) { transition-delay: 0.32s; }
+.section.visible .heroTexto:nth-of-type(4) { transition-delay: 0.40s; }
+.section.visible .heroTexto:nth-of-type(5) { transition-delay: 0.48s; }
+
+/* headings grandes — inner span sobe de baixo (clip reveal) */
+.heroSecaoTitulo .inner {
+  display: block;
+  transform: translateY(105%);
+  transition: transform var(--reveal-duration) var(--reveal-ease);
+}
+
+.section.visible .heroSecaoTitulo::before {
+  opacity: 1;
+}
+
+.section.visible .heroSecaoTitulo .inner {
+  transform: translateY(0);
+}
+
+/* stagger entre os dois headings */
+.section.visible .heroSecaoTitulo:nth-of-type(1) .inner { transition-delay: 0.08s; }
+.section.visible .heroSecaoTitulo:nth-of-type(2) .inner { transition-delay: 0.18s; }
+
+/* shimmer ativa após inner terminar */
+.section.visible .heroSecaoTitulo .shimmer {
+  background-position: -200% center;
+  transition: background-position 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.9s;
+}
+
+/* ─── Keyframe fallback (se não usar IntersectionObserver) ─── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .section::before { display: none; }
+  .heroSecaoTitulo { font-size: clamp(2.2rem, 10vw, 3.5rem); }
 }

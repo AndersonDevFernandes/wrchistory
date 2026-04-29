@@ -1,0 +1,263 @@
+/* Championship.module.css — WRC Leaderboard · Motion Edition */
+
+/* ─── Custom props ─── */
+.section {
+  --red: #c0392b;
+  --red-glow: rgba(192, 57, 43, 0.25);
+  --gold: #d4a843;
+  --surface: rgba(11, 28, 60, 0.72);
+  --border: rgba(255, 255, 255, 0.1);
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  width: min(98%, 1100px);
+  margin: 0 auto;
+  padding: 3.5rem clamp(1rem, 4vw, 2.5rem) 4rem;
+  border-radius: 20px;
+  background: #071a3e;
+  border: 1px solid var(--border);
+  color: #f3f7ff;
+  font-family: "Barlow Condensed", "Oswald", "Impact", sans-serif;
+  position: relative;
+  overflow: hidden;
+
+  /* scroll reveal: estado inicial */
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s var(--reveal-ease), transform 0.9s var(--reveal-ease);
+}
+
+/* Subtle animated top border */
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), var(--gold), var(--red), transparent);
+  background-size: 200% auto;
+  animation: borderSweep 4s linear infinite;
+}
+
+@keyframes borderSweep {
+  to { background-position: -200% center; }
+}
+
+/* Background texture grid */
+.section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* ─── Scroll-reveal: .visible ─── */
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Title ─── */
+.title {
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 2.5rem 0;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+
+  /* clip-based reveal — inner span vai animar */
+  overflow: hidden;
+}
+
+.title .inner {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.85s var(--reveal-ease) 0.1s;
+}
+
+.title .shimmer {
+  display: block;
+  background: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    #ffffff 30%,
+    var(--gold) 50%,
+    #ffffff 70%,
+    #ffffff 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-position: 200% center;
+  transition: background-position 0s;
+}
+
+.section.visible .title .inner {
+  transform: translateY(0);
+}
+
+.section.visible .title .shimmer {
+  background-position: -200% center;
+  transition: background-position 2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s;
+}
+
+/* ─── Grid layout ─── */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Header row ─── */
+.headerRow {
+  display: grid;
+  grid-template-columns: 56px 1fr 1.6fr 1.8fr 1.8fr;
+  gap: 0 1rem;
+  padding: 0 1.25rem 0.75rem 1.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+
+.section.visible .headerRow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Data rows ─── */
+.row {
+  display: grid;
+  grid-template-columns: 56px 1fr 1.6fr 1.8fr 1.8fr;
+  gap: 0 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  align-items: center;
+  position: relative;
+  cursor: default;
+
+  /* estado inicial para stagger */
+  opacity: 0;
+  transform: translateX(-18px);
+  transition:
+    opacity 0.6s var(--reveal-ease),
+    transform 0.6s var(--reveal-ease),
+    background 0.25s ease;
+}
+
+/* stagger por linha */
+.section.visible .row:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.38s; }
+.section.visible .row:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.48s; }
+.section.visible .row:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.58s; }
+.section.visible .row:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 0.68s; }
+.section.visible .row:nth-child(5) { opacity: 1; transform: translateX(0); transition-delay: 0.78s; }
+
+/* Hover — magnetic background + left border glow */
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 0 2px 2px 0;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.row:hover::before {
+  transform: scaleY(1);
+}
+
+/* ─── Ranking badge ─── */
+.row > span:first-child {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.25s ease;
+}
+
+/* P1 gold */
+.row:first-child > span:first-child {
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(212, 168, 67, 0.55);
+}
+
+.row:hover > span:first-child {
+  color: #ffffff;
+}
+
+/* ─── Tempo ─── */
+.row > span:nth-child(2) {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: clamp(0.78rem, 1.3vw, 0.88rem);
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.04em;
+}
+
+.row:first-child > span:nth-child(2) {
+  color: var(--gold);
+}
+
+/* ─── Piloto ─── */
+.row > span:nth-child(3) {
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Equipe ─── */
+.row > span:nth-child(4) {
+  font-size: clamp(0.78rem, 1.2vw, 0.88rem);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ─── Modelo ─── */
+.row > span:nth-child(5) {
+  font-size: clamp(0.75rem, 1.1vw, 0.82rem);
+  color: rgba(255, 255, 255, 0.38);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 700px) {
+  .headerRow,
+  .row {
+    grid-template-columns: 40px 1fr 1.4fr;
+  }
+
+  /* oculta equipe e modelo em telas pequenas */
+  .headerRow > span:nth-child(4),
+  .headerRow > span:nth-child(5),
+  .row > span:nth-child(4),
+  .row > span:nth-child(5) {
+    display: none;
+  }
+}

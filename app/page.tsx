@@ -14,10 +14,10 @@ export default function Home() {
             </div>
 
             <div className={styles.navButtons}>
-              <button className={styles.btn}>Home</button>
-              <button className={styles.btn}>Hitória do WRC</button>
-              <button className={styles.btn}>Campeonato 2026</button>
-              <button className={`${styles.btn} ${styles.btnPrimary}`}>Contato</button>
+              <a href="#" className={styles.btn}>Home</a>
+              <a href="#text-content" className={styles.btn}>Hitória do WRC</a>
+              <a href="#championship" className={styles.btn}>Campeonato 2026</a>
+              <a href="#footer" className={`${styles.btn} ${styles.btnPrimary}`}>Contato</a>
             </div>
           </div>
         </nav>
@@ -39,10 +39,10 @@ export default function Home() {
             <Carrossel />
           </div>
         </div>
-        <div className={styles.sectionWrap}>
+        <div className={styles.sectionWrap} id="text-content">
           <TextContent />
         </div>
-        <div className={styles.sectionWrap}>
+        <div className={styles.sectionWrap} id="championship">
           <Championship />
         </div>
 
