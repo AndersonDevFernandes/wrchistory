@@ -180,7 +180,91 @@
 }
 
 /* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px clamp(1rem, 4vw, 2.5rem) 100px;
+  }
+
+  .heroSubtitulo {
+    font-size: clamp(0.6rem, 1vw, 0.65rem);
+    margin-bottom: 1.8rem;
+  }
+
+  .heroTexto {
+    font-size: clamp(0.95rem, 1.4vw, 1rem);
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+  }
+
+  .heroSecaoTitulo {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 2.5rem 0 1rem 0;
+    padding-left: 1rem;
+  }
+}
+
 @media (max-width: 640px) {
-  .section::before { display: none; }
-  .heroSecaoTitulo { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+  .section {
+    padding: 70px clamp(1.2rem, 3vw, 1.8rem) 80px;
+  }
+
+  .section::before {
+    left: clamp(1.2rem, 3vw, 1.8rem);
+  }
+
+  .heroSubtitulo {
+    font-size: 0.6rem;
+    margin-bottom: 1.5rem;
+    gap: 0.6rem;
+  }
+
+  .heroSubtitulo::after {
+    max-width: 80px;
+  }
+
+  .heroTexto {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .heroSecaoTitulo {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    margin: 2rem 0 0.9rem 0;
+    padding-left: 0.8rem;
+  }
+
+  .heroSecaoTitulo::before {
+    height: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 1rem 70px;
+  }
+
+  .section::before {
+    display: none;
+  }
+
+  .heroSubtitulo {
+    font-size: 0.55rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .heroTexto {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .heroSecaoTitulo {
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    margin: 1.5rem 0 0.8rem 0;
+    padding-left: 0;
+  }
+
+  .heroSecaoTitulo::before {
+    display: none;
+  }
 }

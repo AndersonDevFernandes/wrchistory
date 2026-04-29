@@ -249,9 +249,30 @@
 
 /* ─── Responsive ─── */
 @media (max-width: 700px) {
+  .section {
+    padding: 2.5rem clamp(1rem, 3vw, 1.5rem) 2.5rem;
+  }
+
+  .title {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    margin-bottom: 1.5rem;
+  }
+
   .headerRow,
   .row {
     grid-template-columns: 40px 1fr 1.4fr;
+    padding: 0.8rem 0.9rem;
+    gap: 0 0.75rem;
+  }
+
+  .headerRow {
+    padding: 0 0.9rem 0.6rem 0.9rem;
+    font-size: 0.55rem;
+  }
+
+  .row > span:nth-child(2),
+  .row > span:nth-child(3) {
+    font-size: clamp(0.75rem, 1.2vw, 0.9rem);
   }
 
   /* oculta equipe e modelo em telas pequenas */
@@ -260,5 +281,39 @@
   .row > span:nth-child(4),
   .row > span:nth-child(5) {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 2rem 1rem 2.5rem;
+    border-radius: 12px;
+  }
+
+  .section::before {
+    height: 1px;
+  }
+
+  .title {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 1.2rem;
+  }
+
+  .headerRow,
+  .row {
+    grid-template-columns: 35px 1fr 1.2fr;
+    padding: 0.6rem 0.7rem;
+    gap: 0 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .row > span:first-child {
+    font-size: 0.9rem;
+  }
+
+  .headerRow > span:nth-child(2) {
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
   }
 }

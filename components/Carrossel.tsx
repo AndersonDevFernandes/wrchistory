@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import carrosData from "@/data/carros.json";
 import styles from "./Carrossel.module.css";
 import VideoPlayer from "./VideoPlayer";
@@ -40,10 +40,27 @@ const ORDEM_IDS = [
 export default function Carrossel() {
   const [carroSelecionado, setCarroSelecionado] = useState<Carro | null>(null);
   const [videoAberto, setVideoAberto] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(true);
 
   const carrosMap: Record<string, Carro> = Object.fromEntries(
     (carrosData as Carro[]).map((c) => [c.id, c])
   );
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      const landscape = window.matchMedia("(orientation: landscape)").matches;
+      setIsLandscape(landscape);
+    };
+
+    checkOrientation();
+    window.addEventListener("orientationchange", checkOrientation);
+    window.addEventListener("resize", checkOrientation);
+
+    return () => {
+      window.removeEventListener("orientationchange", checkOrientation);
+      window.removeEventListener("resize", checkOrientation);
+    };
+  }, []);
 
   function handleClicar(id: string) {
     const carro = carrosMap[id];
@@ -61,6 +78,9 @@ export default function Carrossel() {
     setCarroSelecionado(null);
     setVideoAberto(false);
   }
+
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  const videoDisabled = isMobile && !isLandscape;
 
   return (
     <div className={styles.wrapper}>
@@ -160,7 +180,16 @@ export default function Carrossel() {
 
                 {/* ── Seção de vídeo ── */}
                 <div className={styles.videoSecao}>
-                  {!videoAberto ? (
+                  {videoDisabled ? (
+                    <button
+                      className={styles.btnVideo}
+                      style={{ borderColor: carroSelecionado.cor, color: carroSelecionado.cor, opacity: 0.5, cursor: "not-allowed" }}
+                      disabled
+                      title="Vídeo disponível apenas em landscape"
+                    >
+                      ▶ Gire para landscape
+                    </button>
+                  ) : !videoAberto ? (
                     <button
                       className={styles.btnVideo}
                       style={{ borderColor: carroSelecionado.cor, color: carroSelecionado.cor }}
