@@ -6,38 +6,38 @@ import styles from "./Championship.module.css";
 const ESTATISTICAS_2026 = [
   {
     ranking: "1",
-    tempo: "2h 43m 18.9s",
+    tempo: "3h 36m 40.7s",
     piloto: "Sébastien Ogier",
-    equipe: "Toyota Gazoo Racing",
+    equipe: "Toyota Gazoo Racing WRT",
     modelo: "Toyota GR Yaris Rally1",
   },
   {
     ranking: "2",
-    tempo: "+19.9s",
-    piloto: "Elfyn Evans",
-    equipe: "Toyota Gazoo Racing",
-    modelo: "Toyota GR Yaris Rally1",
+    tempo: "+58.3s",
+    piloto: "Thierry Neuville",
+    equipe: "Hyundai Shell Mobis WRT",
+    modelo: "Hyundai i20 N Rally1",
   },
   {
     ranking: "3",
-    tempo: "+1m 40.8s",
+    tempo: "+3m 04.8s",
+    piloto: "Takamoto Katsuta",
+    equipe: "Toyota Gazoo Racing WRT",
+    modelo: "Toyota GR Yaris Rally1",
+  },
+  {
+    ranking: "4",
+    tempo: "+5m 02.2s",
     piloto: "Sami Pajari",
     equipe: "Toyota Gazoo Racing WRT2",
     modelo: "Toyota GR Yaris Rally1",
   },
   {
-    ranking: "4",
-    tempo: "+1m 51.2s",
-    piloto: "Takamoto Katsuta",
-    equipe: "Toyota Gazoo Racing",
-    modelo: "Toyota GR Yaris Rally1",
-  },
-  {
     ranking: "5",
-    tempo: "+3m 29.5s",
-    piloto: "Adrien Fourmaux",
-    equipe: "Hyundai Motorsport",
-    modelo: "Hyundai i20 N Rally1",
+    tempo: "+5m 54.9s",
+    piloto: "Elfyn Evans",
+    equipe: "Toyota Gazoo Racing WRT",
+    modelo: "Toyota GR Yaris Rally1",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function Championship() {
       <h3 className={styles.title}>
         <span className={styles.inner}>
           <span className={styles.shimmer}>
-            Estatísticas WRC 2026 — Rally Islas Canarias (Etapa 5)
+            Estatísticas WRC 2026 — EKO Acropolis Rally Greece (Etapa 8)
           </span>
         </span>
       </h3>
