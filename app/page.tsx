@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import Carrossel from "../components/Carrossel"; // ajuste o caminho conforme sua estrutura
 import TextContent from "../components/TextContent";
 import Championship from "../components/Championship";
+import ChampionshipStandings from "../components/ChampionshipStandings";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
               <a href="#" className={styles.btn}>Home</a>
               <a href="#text-content" className={styles.btn}>Hitória do WRC</a>
               <a href="#championship" className={styles.btn}>Campeonato 2026</a>
+              <a href="#ChampionshipStandings" className={styles.btn}>Classificação</a>
               <a href="#footer" className={`${styles.btn} ${styles.btnPrimary}`}>Contato</a>
             </div>
           </div>
@@ -41,9 +43,11 @@ export default function Home() {
         </div>
         <div className={styles.sectionWrap} id="text-content">
           <TextContent />
-        </div>
+        </div>       
         <div className={styles.sectionWrap} id="championship">
           <Championship />
+          <br />
+          <ChampionshipStandings />
         </div>
 
         <footer id="footer"></footer>
