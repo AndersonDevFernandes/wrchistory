@@ -6,38 +6,38 @@ import styles from "./Championship.module.css";
 const ESTATISTICAS_2026 = [
   {
     ranking: "1",
-    tempo: "3h 36m 40.7s",
-    piloto: "Sébastien Ogier",
+    tempo: "—",
+    piloto: "Sami Pajari",
     equipe: "Toyota Gazoo Racing WRT",
     modelo: "Toyota GR Yaris Rally1",
   },
   {
     ranking: "2",
-    tempo: "+58.3s",
-    piloto: "Thierry Neuville",
-    equipe: "Hyundai Shell Mobis WRT",
-    modelo: "Hyundai i20 N Rally1",
+    tempo: "+26.7s",
+    piloto: "Oliver Solberg",
+    equipe: "Toyota Gazoo Racing WRT",
+    modelo: "Toyota GR Yaris Rally1",
   },
   {
     ranking: "3",
-    tempo: "+3m 04.8s",
-    piloto: "Takamoto Katsuta",
+    tempo: "+1m 57.4s",
+    piloto: "Elfyn Evans",
     equipe: "Toyota Gazoo Racing WRT",
     modelo: "Toyota GR Yaris Rally1",
   },
   {
     ranking: "4",
-    tempo: "+5m 02.2s",
-    piloto: "Sami Pajari",
-    equipe: "Toyota Gazoo Racing WRT2",
-    modelo: "Toyota GR Yaris Rally1",
+    tempo: "+3m 12.8s",
+    piloto: "Adrien Fourmaux",
+    equipe: "Hyundai Shell Mobis WRT",
+    modelo: "Hyundai i20 N Rally1",
   },
   {
     ranking: "5",
-    tempo: "+5m 54.9s",
-    piloto: "Elfyn Evans",
-    equipe: "Toyota Gazoo Racing WRT",
-    modelo: "Toyota GR Yaris Rally1",
+    tempo: "+4m 10.5s",
+    piloto: "Thierry Neuville",
+    equipe: "Hyundai Shell Mobis WRT",
+    modelo: "Hyundai i20 N Rally1",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function Championship() {
       <h3 className={styles.title}>
         <span className={styles.inner}>
           <span className={styles.shimmer}>
-            Estatísticas WRC 2026 — EKO Acropolis Rally Greece (Etapa 8)
+            Estatísticas WRC 2026 — Secto Rally Finland (Etapa 10)
           </span>
         </span>
       </h3>
